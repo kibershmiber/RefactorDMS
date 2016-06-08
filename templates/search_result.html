@@ -1,0 +1,33 @@
+   {% block shortdesc %}
+
+
+   {% endblock %}
+
+{% block breadcrumb %}
+
+ {% endblock %}
+
+  <div class="box">
+            <div class="box-header with-border">
+              <div class="box-title"> Результати пошуку по запиту:<strong> '{{ query }}'</strong></div>
+            </div>
+
+
+
+         <div class="box-body">
+
+
+<div class="box-body no-padding">
+              <table class="table table-striped table-bordered">
+                <tbody>
+                {% for doc in docums %}
+                <tr>
+                  <td>{{ forloop.counter }}</td>
+                  <td><a href="/{{ doc.id_docum }}">{% if doc.docum_no %}<strong>{{ doc.docum_no }}</strong>{% endif %} {{ doc.short_descr }}</a></td>
+                </tr>
+                {% endfor %}
+              </tbody></table>
+</div>
+          </div>
+                 </div><!-- /.box-body -->
+

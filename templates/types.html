@@ -1,0 +1,32 @@
+{% extends 'main.html' %}
+
+{% block title %}Типи документів{% endblock %}
+
+{% block shortdesc %}
+<h1>Типи документів</h1>
+{% endblock %}
+
+
+{% block breadcrumb %}
+            <ol class="breadcrumb">
+            <li><a href="/"><i class="fa fa-home"></i> Головна</a></li>
+
+                    <li class="active">Типи документів</li>
+
+          </ol>
+ {% endblock %}
+
+{% block content %}
+          <div class="box">
+            <!-- /.box-header -->
+            <div class="box-body">
+<ul>
+    {% for cat in cats %}
+    <li><a href="{{ cat.id_parent.id_type_docum }}/{{ cat.id_type_docum }}"> {{ cat.name }}</a></li>
+    {% endfor %}
+
+</ul>
+    </div>
+    </div>
+
+{% endblock %}

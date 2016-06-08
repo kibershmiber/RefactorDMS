@@ -1,0 +1,99 @@
+/* Warning - Editing below can break the script */
+html.accordion-menu-js dd.a-m-d{
+	display:none;
+}
+
+html.accordion-menu-js dd.a-m-d-expand {
+	display:block;
+
+}
+
+html.accordion-menu-js dd.a-m-d-before-expand {
+	display:block;
+	position:relative;
+	z-index:-1;
+/*	opacity:0;*/
+	height:auto !important;
+	visibility:hidden;
+	overflow:visible;
+}
+
+html.accordion-menu-js dt.a-m-t-expand {
+}
+
+html.accordion-menu-js dd.a-m-d-anim {
+	overflow:hidden;
+	display:block;	
+}
+
+
+dl.accordion-menu dd.a-m-d .bd{
+
+}
+
+#sbdhidden { display:none; }
+/* Warning - Editing above can break the script */
+
+/* Editable section below */
+
+dl, dt, dd         { width: 207px; margin: 0; padding: 0; list-style-type: none;}
+dl.accordion-menu dt         
+{ background-image:url(m_b00000.gif);
+background-repeat:no-repeat;
+
+display:block;
+font-size:12px;
+font-weight:bold;
+text-align:center;
+padding:20px 0 30px;
+vertical-align:middle; }
+dl.accordion-menu dt:hover   
+{ FONT-WEIGHT: bold;
+	FONT-SIZE: 13px; 
+	BACKGROUND: url(m_b_o000.gif) no-repeat left top; 
+	VERTICAL-ALIGN: middle; 
+	COLOR: white; 
+	TEXT-ALIGN: center; }
+
+
+dl.accordion-menu dt a       
+	{
+	FONT-WEIGHT: bold;
+	color:white;
+	text-decoration:none;
+	display:block;
+	
+	}
+dl.accordion-menu dt a:hover 
+	{ 
+	FONT-WEIGHT: bold;
+	color:white;
+	}
+
+
+
+dl.accordion-menu dd         { /*line-height: 12px;*/ text-align:center;
+}
+dl.accordion-menu dd a       { color:#EB353C;
+display:block;
+font-size:14px;
+font-weight:bold;
+line-height:17px;
+padding:0 0 10px;
+text-decoration:none; }
+dl.accordion-menu dd a:hover { color: #003366; }
+
+span.rollmainlevel{ cursor: pointer;
+color:wheat;
+ }
+
+
+/* Example CSS to control active menu/submenu a link */
+#active_roll_menu{ color: #000; }
+a:hover#active_roll_menu { color: #003366; }
+
+/* Example CSS to override CSS for top level expanded menu */
+#activeparent_roll_menu{ color: #eeefef; }
+
+
+dt.active_top_menu{ /*background-color: green; */}

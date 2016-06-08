@@ -1,0 +1,263 @@
+{# Змінюємо заголовок підвікна #}
+
+{% block shortdesc %}
+<h1>Картка документу: {{ document.docum_no}} <small>(інв.№ {{ document.id_docum }})</small></h1>
+{% endblock %}
+
+{% block breadcrumb %} 
+            <ol class="breadcrumb">
+            <li><a href="/"><i class="fa fa-home"></i> Головна</a></li>
+            <li class="active">Документ</li>
+          </ol>
+ {% endblock %}
+
+
+
+{# Власне картка документу #}
+{% block content %}
+
+   <!-- Default box -->
+          <div class="box">
+            <div class="box-header with-border">
+              <div class="box-title"> Загальна інформація</div>
+              <div class="box-tools pull-right">
+                <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+              </div>
+            </div>
+            <div class="box-body">
+
+                <b>Інв. номер:</b> {{ document.id_docum }}<br/>
+                <b>Назва документу:</b> {{ document.short_descr }}<br/>
+                <b>Підтип:</b>{{ document.mdslogjustification_id_docum.get.id_subtype_docum.name }}a <br/>
+                <b>Введений у дію:</b>{% if document.date_act_on %}  {{ document.date_act_on|date:"d.m.Y"}}р. {% else %} Ні {% endif %}<br/>
+                <b>Затведженний:</b>{% if document.date_act_on %} {{ document.date_act_on|date:"d.m.Y"}}р.{% else %} Ні {% endif %}<br/>
+               <b>Дійсний до:</b>{% if document.date_act_off %} {{ document.date_act_off|date:"d.m.Y"}}р.{% else %} Ні {% endif %}<br/>
+
+            </div><!-- /.box-body -->
+
+          </div><!-- /.box -->
+
+{% endblock content %}
+
+{% block content_add  %}
+   <div class="box">
+            <div class="box-header with-border">
+              <div class="box-title">Додаткові відомості</div>
+              <div class="box-tools pull-right">
+                <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+
+              </div>
+            </div>
+            <div class="box-body">
+ <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+
+              <li  class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="false">Файли</a></li>
+              <li><a href="#tab_2" data-toggle="tab" aria-expanded="true">Додатково</a></li>
+              <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="false">Розсилка</a></li>
+              <li class=""><a href="#tab_4" data-toggle="tab" aria-expanded="false">Зв'язки</a></li>
+              <li class=""><a href="#tab_5" data-toggle="tab" aria-expanded="false">Жит. цикл</a></li>
+
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" id="tab_1">
+
+                  <table class="table table-bordered table table-hover">
+                      <thead>
+                      <tr>
+                          <td>Файл</td>
+                          <td>Дата зміни</td>
+                          <td>Коментар</td>
+                      </tr>
+                      </thead>
+                      {% for file in files %}
+                      <tr>
+                          <td><a href="/file/{{ file.id_docum.id_docum }}/{{ file.id_content }}"> {{ file.file_name }}</a></td>
+                          <td>{{ file.date_change|date:"d.m.Y" }}</td>
+                          <td>{{ file.comments }}</td>
+
+                      </tr>
+                      {% endfor %}
+                  </table>
+
+              </div>
+              <!-- /.tab-pane -->
+              <div class="tab-pane" id="tab_2">
+
+               {% if document.doc_note %}
+
+              <p><b>Короткий зміст/примітка:</b> {{ document.doc_note }}</p>
+
+              {% endif %}
+              {% if document.accomp_doc %}
+
+              <p><b>Супровідні документи:</b> {{ document.accomp_doc }}</p>
+
+              {% endif %}
+
+
+              <hr>
+                <p><b>Автори:</b></p>
+                  <table class="table table-bordered table table-hover">
+                      <thead>
+                      <tr>
+                          <td>Підрозділ</td>
+                          <td>ПІБ</td>
+                          <td>Посада</td>
+                      </tr>
+                      </thead>
+                      {% for author in authors %}
+                      <tr>
+                          <td>{{author.dep.name}}</td>
+                          <td>{{author.id_author_int.imya}} {{author.id_author_int.familia}} {{author.id_author_int.otchestvo}}</td>
+                      {% if author.id_prof_author.ukr_short %}
+                        <td>{{author.id_prof_author.ukr_short}} </td>
+                            {% else %}
+                        <td>{{author.id_prof_author.name}} </td>
+                      {% endif %}
+
+                      </tr>
+                      {% endfor %}
+                  </table>
+
+
+
+              </div>
+              <!-- /.tab-pane -->
+              <div class="tab-pane" id="tab_3">
+                    <table class="table table-bordered table table-hover">
+                      <thead>
+                      <tr>
+                          <td>Відправлено в підрозділ</td>
+                          <td>Кількість примірників</td>
+                          <td>Дата відправки документу</td>
+                          <td>Паперова копія</td>
+                      </tr>
+                      </thead>
+                {% for deliv in deliveries %}
+                        <tr>
+                            <td>
+                                {{ deliv.dep }}
+                            </td>
+                            <td>
+                                {% if deliv.instanc == None %} Не визначено {% else %}{{ deliv.instanc }}{% endif %}
+                            </td>
+                            <td>
+                                {{ deliv.date_send|date:"d.m.Y" }}
+                            </td>
+                            <td>
+                               <div class="text-center"> {% if deliv.is_paper_copy %}<i class="fa fa-check-square"></i>{% else %}<i class="fa fa-close"></i>{% endif %}</div>
+                            </td>
+                            </tr>
+                {% endfor %}
+                    </table>
+
+              </div>
+
+               <div class="tab-pane" id="tab_4">
+                    <table class="table table-bordered table table-hover">
+                      <thead>
+                      <tr>
+                          <td>Позиція у списку</td>
+                          <td>Тип зв'язку</td>
+                          <td>Назва документу</td>
+                          <td>Інвентарний номер</td>
+                          <td>Примітка</td>
+                      </tr>
+                      </thead>
+                {% for connection_master in connections_master%}
+                        <tr>
+                            <td>
+                                {{ connection_master.position_sm }}
+                            </td>
+                            <td>
+                                {% if connection_master.type_link == 2  %} При перегляді{% elif connection_master.type_link == 3 %}
+                                    Повідомлення про зміну{% elif connection_master.type_link == 4 %}При створенні ОРД{% else %}Інше{% endif %}
+                            </td>
+                            <td>
+
+                               <a href="/{{ connection_master.id_slave_doc.id_docum }}"> {{ connection_master.id_slave_doc.short_descr }}</a>
+
+                            </td>
+                            <td>
+                                {{ connection_master.id_slave_doc.id_docum }}
+                            </td>
+
+                            <td>
+                                {{ connection_master.note }}
+                            </td>
+
+                            </tr>
+                {% endfor %}
+                    
+                     {% for connection_slave in connections_slave%}
+                        <tr>
+                            <td>
+                                {{ connection_slave.position_ms }}
+                            </td>
+                            <td>
+                                {% if connection_slave.type_link == 2  %} При перегляді{% elif connection_slave.type_link == 3 %} Повідомлення про зміну{% elif connection_slave.type_link == 4 %}При створенні ОРД{% else %}Інше{% endif %}
+                            </td>
+                            <td>
+
+                               <a href="/{{ connection_slave.id_master_doc.id_docum }}"> {{ connection_slave.id_master_doc.short_descr }}</a>
+
+                            </td>
+                            <td>
+                                {{ connection_slave.id_master_doc.id_docum }}
+                            </td>
+
+                            <td>
+                                {{ connection_slave.note }}
+                            </td>
+
+                            </tr>
+                {% endfor %}
+                    </table>
+
+
+
+
+              </div>
+
+               <div class="tab-pane" id="tab_5">
+
+                    <table class="table table-bordered table table-hover">
+                      <thead>
+                      <tr>
+                          <td>Етап</td>
+                          <td>Реєстратор етапу</td>
+                          <td>Дата реєстрації етапу</td>
+
+                      </tr>
+                      </thead>
+                {% for stage in circle %}
+                        <tr>
+                            <td>
+                                {{ stage.stagename }}
+                            </td>
+                            <td>
+                                {{ stage.owner.familia }} {{ stage.owner.imya }}
+                            </td>
+                            <td>
+                                <div class="text-center"> {{ stage.date_receipt|date:"d.m.Y" }}</div>
+                            </td>
+
+                            </tr>
+                {% endfor %}
+                    </table>
+
+              </div>
+
+
+              <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+          </div>
+                 </div><!-- /.box-body -->
+
+          </div>
+
+              </div>
+
+{% endblock %}

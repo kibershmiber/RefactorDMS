@@ -1,0 +1,49 @@
+{% extends 'main.html' %}
+
+{% block title %}Список документів{% endblock %}
+
+{% block shortdesc %}
+<h1>Список документів</h1>
+{% endblock %}
+
+{% block breadcrumb %}
+            <ol class="breadcrumb">
+            <li><a href="/"><i class="fa fa-home"></i> Головна</a></li>
+                    <li><a href="/">Типи документів</a></li>
+                    <li><a href="/">Підтипи документів</a></li>
+                    <li class="active">Документації</li>
+          </ol>
+ {% endblock %}
+
+{% block content %}
+                  <div class="box">
+            <!-- /.box-header -->
+            <div class="box-body">
+            <ul>
+    {% for document in documents.object_list %}
+        <li>
+        {% if document.id_docum %}
+            <a href="/{{ document.id_docum }}"> <b>{{document.docum_no }}</b> <small>({{document.short_descr|truncatewords:12 }})</small></a><br/>
+        {% else %}
+            <a href="/{{ document.id_docum}}"> {{document.short_descr|truncatewords:12 }}</a><br/>
+        {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+
+            <div class="text-center">
+    <ul class="pagination pagination-sm no-margin pull-left">
+            {% if documents.has_previous %}
+                <li><a href="?page={{ documents.previous_page_number }}"><i class="fa fa-caret-square-o-left"></i> попередня</a></li>
+            {% endif %}
+                <li> <a href="#">Сторінка: {{ documents.number }} з {{ documents.paginator.num_pages }}</a> </li>
+            {% if documents.has_next %}
+                <li>
+                <a href="?page={{ documents.next_page_number }}">наступна <i class="fa fa-caret-square-o-right"></i></a>
+                </li>
+            {% endif %}
+    </ul>
+
+     </div>
+              </div>
+{% endblock %}

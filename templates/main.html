@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block title %}Головна. Система електронного документообігу "Рефактор" {% endblock title%}</title>
+     {% load staticfiles %}
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static 'css/AdminLTE.css' %}">
+
+   <link rel="stylesheet" href="{% static 'plugins/select2/select2.min.css'%}">
+
+  <!-- daterange picker -->
+  <link rel="stylesheet" href="{% static 'plugins/daterangepicker/daterangepicker-bs3.css'%}">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+    <!--[if lt IE 9]>
+        <script src="{% static 'js/html5shiv.min.js' %}"></script>
+        <script src="{% static 'js/respond.min.js' %}"></script>
+    <![endif]-->
+  </head>
+  <body class="hold-transition skin-green-light sidebar-mini">
+    <!-- Site wrapper -->
+    <div class="wrapper">
+
+      <header class="main-header">
+        <!-- Logo -->
+        <a href="/" class="logo">
+          <!-- mini logo for sidebar mini 50x50 pixels -->
+          <span class="logo-mini"><b>DMS</b></span>
+          <!-- logo for regular state and mobile devices -->
+          <span class="logo-lg"><b>Рефактор</b> DMS</span>
+        </a>
+<nav class="navbar navbar-static-top">
+      <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
+
+
+      <div class="navbar-custom-menu">
+
+        <ul class="nav navbar-nav">
+          <li class="dropdown notifications-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-bell-o"></i>
+              <span class="label label-warning">10</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">You have 10 notifications</li>
+              <li>
+                <!-- inner menu: contains the actual data -->
+                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 200px;"><ul class="menu" style="overflow: hidden; width: 100%; height: 200px;">
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
+                      page and may cause design problems
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-users text-red"></i> 5 new members joined
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-shopping-cart text-green"></i> 25 sales made
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-user text-red"></i> You changed your username
+                    </a>
+                  </li>
+                </ul><div class="slimScrollBar" style="width: 3px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px; background: rgb(0, 0, 0);"></div><div class="slimScrollRail" style="width: 3px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; opacity: 0.2; z-index: 90; right: 1px; background: rgb(51, 51, 51);"></div></div>
+              </li>
+              <li class="footer"><a href="#">View all</a></li>
+            </ul>
+          </li>
+          <!-- Tasks: style can be found in dropdown.less -->
+
+          <!-- User Account: style can be found in dropdown.less -->
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <img src="/static/img/pev.jpg" class="user-image" alt="User Image">
+              <span class="hidden-xs">Поремчук Євгеній</span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- User image -->
+              <li class="user-header">
+                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+
+                <p>
+                  Alexander Pierce - Web Developer
+                  <small>Member since Nov. 2012</small>
+                </p>
+              </li>
+              <!-- Menu Body -->
+              <li class="user-body">
+                <div class="row">
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Followers</a>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Sales</a>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Friends</a>
+                  </div>
+                </div>
+                <!-- /.row -->
+              </li>
+              <!-- Menu Footer-->
+              <li class="user-footer">
+                <div class="pull-left">
+                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                </div>
+                <div class="pull-right">
+                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+
+        </ul>
+      </div>
+ <div class="input-group input-group-sm">
+
+    <input type="hidden" name="csrfmiddlewaretoken" value="IBLDiQKWysyrOIJHL96XTWUKKdnAmXcd">
+        <input id="searchvalue" type="text" class="form-control" placeholder="Введіть назву документу або його інвентарний номер">
+            <span class="input-group-btn">
+                      <button id="search_button" type="submit" class="btn btn-default btn-flat">Пошук</button>
+            </span>
+        </div>
+
+    </nav>
+      </header>
+
+      <!-- =============================================== -->
+
+      <!-- Left side column. contains the sidebar -->
+      <aside class="main-sidebar">
+        <section class="sidebar" style="height: auto;">
+      <!-- Sidebar user panel -->
+      <div class="user-panel">
+        <button type="button" class="btn btn-block btn-success btn-flat"><strong>Створити документ</strong><div class="pull-right"><i class="fa fa-plus-circle"></i></div></button>
+      </div>
+
+      <!-- /.search form -->
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu">
+        <li class="header">Картотека:</li>
+          <li  class="active">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Необроблені</span><small class="label pull-right bg-orange">22</small>
+          </a>
+          </li>
+            <li>
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Проекти документів</span><small class="label pull-right bg-orange">2</small>
+          </a>
+          </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Вхідні документи</span> <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="index.html"><i class="fa fa-circle-o"></i> Накази</a></li>
+            <li><a href="index2.html"><i class="fa fa-circle-o"></i>Розпорядження</a></li>
+            <li><a href="index.html"><i class="fa fa-circle-o"></i> Накази</a></li>
+          </ul>
+        </li>
+          <li class="treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Вихідні документи</span> <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="index.html"><i class="fa fa-circle-o"></i> Накази</a></li>
+            <li><a href="index2.html"><i class="fa fa-circle-o"></i>Розпорядження</a></li>
+            <li><a href="index.html"><i class="fa fa-circle-o"></i> Накази</a></li>
+          </ul>
+        </li>
+            <li>
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Вибрані</span><small class="label pull-right bg-gray">22</small>
+          </a>
+          </li>
+          <li>
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Налаштування</span>
+          </a>
+          </li>
+          <li>
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Допомога</span>
+          </a>
+          </li>
+      </ul>
+    </section>
+      </aside>
+
+      <!-- =============================================== -->
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            {% block shortdesc %}
+
+
+            {% endblock %}
+
+{% block breadcrumb %}
+            <ol class="breadcrumb">
+            <li><a href="/"><i class="fa fa-dashboard"></i> Головна</a></li>
+
+                    <li class="active">Документ</li>
+
+          </ol>
+ {% endblock %}
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            {% block content %}
+
+            {% endblock content %}
+
+            {% block content_add %}
+
+            {% endblock content_add %}
+
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+
+      <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+          <b>Версія</b> 0.2.9 від 06.05.2016
+        </div>
+        <strong><a href="#">СІТ, ВП Рівненська АЕС</a>.</strong>
+
+         <!-- <a href="#" data-toggle="modal" data-target="#towns">Виберіть</a>-->
+
+      </footer>
+
+
+      <!-- Add the sidebar's background. This div must be placed
+           immediately after the control sidebar -->
+      <div class="control-sidebar-bg"></div>
+    </div><!-- ./wrapper -->
+
+    <!-- jQuery 2.1.4 -->
+    <script src="{% static 'js/jquery-1.12.3.min.js'%}"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="{% static 'bootstrap/js/bootstrap.min.js'%}"></script>
+
+    <!-- FastClick -->
+    <!--<script src="{% static 'plugins/fastclick/fastclick.min.js'%}"></script>-->
+        <!-- daterangepicker -->
+    <script src="{% static 'js/moment.min.js'%}"></script>
+    <script src="{% static 'plugins/daterangepicker/daterangepicker.js'%}"></script>
+    <!-- datepicker -->
+    <script src="{% static 'plugins/datepicker/bootstrap-datepicker.js'%}"></script>
+    <script src="{% static 'plugins/input-mask/jquery.inputmask.js'%}"></script>
+    <script src="{% static 'plugins/input-mask/jquery.inputmask.date.extensions.js'%}"></script>
+    <script src="{% static 'plugins/input-mask/jquery.inputmask.extensions.js'%}"></script>
+
+    <!-- AdminLTE App -->
+    <script src="{% static 'js/app.min.js'%}"></script>
+    <script src="{% static 'js/main.js'%}"></script>
+    <script src="{% static 'plugins/select2/select2.full.min.js'%}"></script>
+  <script>
+
+      $(function () {
+
+          $.getJSON("/deps", function (data) {
+             $(".select2").select2({
+                 data: data,
+             });
+        });
+    //Datemask dd/mm/yyyy
+    $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
+    //Datemask2 mm/dd/yyyy
+    $("#datemask2").inputmask("mm/dd/yyyy", {"placeholder": "dd/mm/yyyy"});
+    //Money Euro
+    $("[data-mask]").inputmask();
+
+    //Date range picker
+    $('#reservation').daterangepicker();
+    //Date range picker with time picker
+    $('#reservationtime').daterangepicker({timePicker: true, timePickerIncrement: 30, format: 'DD/MM/YYYY h:mm A'});
+    //Date range as a button
+    $('#daterange-btn').daterangepicker(
+        {
+        "autoApply": true,
+        "locale": {
+        "format": "DD/MM/YYYY",
+        "separator": " - ",
+        "applyLabel": "ОК",
+        "cancelLabel": "Відмінити",
+        "fromLabel": "З",
+        "toLabel": "по",
+        "customRangeLabel": "Інший діапазон",
+        "daysOfWeek": [
+            "Нд",
+            "Пн",
+            "Вт",
+            "Ср",
+            "Чт",
+            "Пт",
+            "Сб"
+        ],
+        "monthNames": [
+            "Січень",
+            "Лютий",
+            "Березень",
+            "Квітень",
+            "Травень",
+            "Червень",
+            "Липень",
+            "Серпень",
+            "Вересень",
+            "Жовтень",
+            "Листопад",
+            "Грудень"
+        ],
+        "firstDay": 1
+    },
+          ranges: {
+            'За сьогодні': [moment(), moment()],
+            'За вчора': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'За 7 днів': [moment().subtract(6, 'days'), moment()],
+            'За 30 днів': [moment().subtract(29, 'days'), moment()],
+            'За цей місяць': [moment().startOf('month'), moment().endOf('month')],
+            'За минулий місяць': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+          },
+          startDate: moment().subtract(29, 'days'),
+          endDate: moment()
+        },
+        function (start, end) {
+
+          $('#daterange-btn').html('<i class="fa fa-calendar"></i> '+start.format('YYYY-MM-DD')+'/'+end.format('YYYY-MM-DD')+' <i class="fa fa-caret-down"></i>')
+          $('input#date_from').val(start.format('YYYY-MM-DD'));
+          $('input#date_to').val(end.format('YYYY-MM-DD'));
+
+        console.log(start.format('M-D-YYYY'));
+        }
+    );
+  });
+
+  </script>
+
+
+  </body>
+</html>

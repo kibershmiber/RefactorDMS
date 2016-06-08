@@ -1,0 +1,12 @@
+{% for docs in documents %}
+    <ul>
+
+<li>{{ forloop.counter }}1</li>
+    {% if docs.docum_no %}
+
+    <li>    {{ docs.docum_no }}</li>
+    {% else %}
+        <li>{{ docs.short_descr }}</li>
+    {% endif %}
+    </ul>
+{% endfor %}
