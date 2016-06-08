@@ -90,7 +90,7 @@ ENV/
 # Rope project settings
 .ropeproject
 
-.idea
+.idea/
 .gitignore
 .idea/vcs.xml
 .idea/workspace.xml
@@ -98,6 +98,7 @@ bp/control/
 bp/disposal/
 bp/instruction/
 bp/report/
-refactordms/__pycache__/
+system/__pycache__/
 storage/
 
+deploy/

@@ -15,10 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-import refactordms.views
+import system.views
 
 urlpatterns = [
-    url(r'^$', refactordms.views.index),
+    url(r'^$', system.views.index),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^bp/officememo/', include(admin.site.urls)),
 ]
