@@ -18,24 +18,25 @@
 - Використання готових інструментів розмежування прав
 
 ##Встановлення і налагодження
-Проект працює як на Windows так і на MacOS та Lunux-подібних OS.
-Скомпільований драйвер для роботи з БД для Windows Ви можете знайти у папці ***deploy***. 
+Проект працює як на Windows так і на MacOS та Lunux-подібних OS.  
+Скомпільований драйвер для роботи з БД для Windows Ви можете знайти у папці ***deploy***.   
 
-**Алгоритм встановлення:**
-1. Встановити Python3
-2. Встановити MariaDB10
-3. Якщо у вас є інші проекти, які використовують пакети Python - активуйте virtualenv
-4. Встановити потрібні для проекту пакети: ***```pip install -r requirements.txt```***
-5. Імпортувати дамп БД через Ваш улюблений DBViewer (нам подобається) [HeidiSQL](http://www.heidisql.com/). Дамп знаходиться у папці ***deploy*** i називається dump.sql
-
-**Конфігурація проекту**
-1. Конфіги знаходяться у папці ***system/settings*** і розбиті на ***development.py*** (для розробки) та ***production.py*** (для продакшен серверу). Відповідно, при розробці запускаєте сервер ось так: ***```manage.py runserver 127.0.0.1:8000 --settings=system.settings.development```***
-2. Перед запуском системи налаштуйте такі параметри в конфіг файлі: ***URL*** , ***SECRET_KEY***, ***DATABASES***
-3. Запускайтесь - ***```manage.py runserver 127.0.0.1:8000 --settings=system.settings.development```***
-
+**Алгоритм встановлення:**  
+1. Встановити Python3  
+2. Встановити MariaDB10  
+3. Якщо у вас є інші проекти, які використовують пакети Python - активуйте virtualenv  
+4. Встановити потрібні для проекту пакети: ***```pip install -r requirements.txt```***  
+5. Імпортувати дамп БД через Ваш улюблений DBViewer (нам подобається) [HeidiSQL](http://www.heidisql.com/). Дамп знаходиться у папці ***deploy*** i називається dump.sql  
+  
+**Конфігурація проекту**  
+1. Конфіги знаходяться у папці ***system/settings*** і розбиті на ***development.py*** (для розробки) та ***production.py*** (для продакшен серверу).   Відповідно, при розробці запускаєте сервер ось так: ***```manage.py runserver 127.0.0.1:8000 --settings=system.settings.development```***  
+2. Перед запуском системи налаштуйте такі параметри в конфіг файлі: ***URL*** , ***SECRET_KEY***, ***DATABASES***  
+3. Запускайтесь - ***```manage.py runserver 127.0.0.1:8000 --settings=system.settings.development```***  
+  
 #Контакти з розробниками
 
-Ми відповідаємо на ваші запитання і надаємо консультації:
-1. в [Issues GitHub](https://github.com/poremchuk/RefactorDMS/issues)
-2. по електропошті - evgeniy@rozumnemisto.org
-3. у ФБ - [Поремчук Євген](https://www.facebook.com/e.poremchuk)
+Ми відповідаємо на ваші запитання і надаємо консультації:  
+1. в [Issues GitHub](https://github.com/poremchuk/RefactorDMS/issues)  
+2. по електропошті - evgeniy@rozumnemisto.org  
+3. у ФБ - [Поремчук Євген](https://www.facebook.com/e.poremchuk)  
+  
